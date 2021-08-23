@@ -13,7 +13,7 @@ const numOfColumns = 13;
 const firstColumn = columnOffset;
 const lastColumn = firstColumn + numOfColumns;
 
-function updateTotals() {
+function updateInvestmentsTotals() {
   const { sheet, tableValues, currentTotals, newTotals } = getTableData();
   const totalDiffs = newTotals.map(
     (newTotal, index) => newTotal - currentTotals[index]
@@ -41,7 +41,7 @@ function updateTotals() {
   });
 }
 
-function getTableData() {
+function getInvestmentsTableData() {
   const sheet =
     SpreadsheetApp.openById(spreadsheetId).getSheetByName(sheetName);
   const data = sheet.getDataRange().getValues();
@@ -61,8 +61,4 @@ function getTableData() {
     );
 
   return { sheet, tableValues, currentTotals, newTotals };
-}
-
-function indexToRange(columnIndex, rowIndex) {
-  return `${String.fromCharCode(columnIndex + 65)}${rowIndex + 1}`;
 }
