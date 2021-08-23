@@ -13,7 +13,7 @@ const numOfColumns = 13;
 const firstColumn = columnOffset;
 const lastColumn = firstColumn + numOfColumns;
 
-function updateInvestmentTotals() {
+function updateTotals() {
   const { sheet, tableValues, currentTotals, newTotals } = getTableData();
   const totalDiffs = newTotals.map(
     (newTotal, index) => newTotal - currentTotals[index]
