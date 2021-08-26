@@ -4,10 +4,8 @@ const indexToRange = (columnIndex, rowIndex) => {
 
 const isEmpty = value => value === '';
 
-const getTableFromSheet = sheet => {
+const getTableFromSheet = (sheet, id) => {
   const data = sheet.getDataRange().getValues();
-
-  const id = 'id';
 
   let rowOffset = 0;
   let numOfRows = 0;
@@ -28,5 +26,9 @@ const getTableFromSheet = sheet => {
     });
   });
 
-  return { rowOffset, numOfRows, colOffset, numOfCols };
+  const table = data
+    .slice(rowOffset, rowOffset + numOfRows)
+    .map(row => row.slice(colOffset, colOffset + numOfCols));
+
+  return { rowOffset, numOfRows, colOffset, numOfCols, table };
 };

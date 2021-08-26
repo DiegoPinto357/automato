@@ -13,12 +13,13 @@ describe('spreadsheet', () => {
         }),
       };
 
-      const result = getTableFromSheet(sheet);
+      const result = getTableFromSheet(sheet, 'id');
 
       expect(result.rowOffset).toBe(tablePattern.expected.rowOffset);
       expect(result.numOfRows).toBe(tablePattern.expected.numOfRows);
       expect(result.colOffset).toBe(tablePattern.expected.colOffset);
       expect(result.numOfCols).toBe(tablePattern.expected.numOfCols);
+      expect(result.table).toEqual(tablePattern.expected.table);
     });
   });
 });

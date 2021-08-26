@@ -11,7 +11,12 @@
       "rowOffset": 1,
       "numOfRows": 3,
       "colOffset": 1,
-      "numOfCols": 3
+      "numOfCols": 3,
+      "table": [
+        ["id", "1", "1"],
+        ["1", "", "1"],
+        ["1", "1", "1"]
+      ]
     }
   },
   {
@@ -25,7 +30,12 @@
       "rowOffset": 1,
       "numOfRows": 3,
       "colOffset": 1,
-      "numOfCols": 3
+      "numOfCols": 3,
+      "table": [
+        ["id", "1", "1"],
+        ["1", "", "1"],
+        ["1", "1", "1"]
+      ]
     }
   },
   {
@@ -39,7 +49,12 @@
       "rowOffset": 0,
       "numOfRows": 3,
       "colOffset": 1,
-      "numOfCols": 3
+      "numOfCols": 3,
+      "table": [
+        ["id", "1", "1"],
+        ["1", "", "1"],
+        ["1", "1", "1"]
+      ]
     }
   },
   {
@@ -54,7 +69,12 @@
       "rowOffset": 1,
       "numOfRows": 3,
       "colOffset": 0,
-      "numOfCols": 3
+      "numOfCols": 3,
+      "table": [
+        ["id", "1", "1"],
+        ["1", "", "1"],
+        ["1", "1", "1"]
+      ]
     }
   },
   {
@@ -69,7 +89,12 @@
       "rowOffset": 1,
       "numOfRows": 3,
       "colOffset": 1,
-      "numOfCols": 3
+      "numOfCols": 3,
+      "table": [
+        ["id", "1", "1"],
+        ["1", "", "1"],
+        ["1", "1", "1"]
+      ]
     }
   },
   {
@@ -83,7 +108,12 @@
       "rowOffset": 0,
       "numOfRows": 3,
       "colOffset": 0,
-      "numOfCols": 3
+      "numOfCols": 3,
+      "table": [
+        ["id", "1", "1"],
+        ["1", "", "1"],
+        ["1", "1", "1"]
+      ]
     }
   },
   {
@@ -96,13 +126,18 @@
       "rowOffset": 0,
       "numOfRows": 3,
       "colOffset": 0,
-      "numOfCols": 3
+      "numOfCols": 3,
+      "table": [
+        ["id", "1", "1"],
+        ["1", "", "1"],
+        ["1", "1", "1"]
+      ]
     }
   },
   {
     "data": [
       ["", "", "", "", ""],
-      ["", "id", "0", "0", ""],
+      ["", "id", "", "", ""],
       ["", "", "", "", ""],
       ["", "", "", "1", ""],
       ["", "", "", "", ""]
@@ -111,7 +146,12 @@
       "rowOffset": 1,
       "numOfRows": 3,
       "colOffset": 1,
-      "numOfCols": 3
+      "numOfCols": 3,
+      "table": [
+        ["id", "", ""],
+        ["", "", ""],
+        ["", "", "1"]
+      ]
     }
   }
 ]
