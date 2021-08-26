@@ -1,0 +1,27 @@
+{
+  "name": "automato",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "author": "Diego Pinto",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DiegoPinto357/automato/issues"
+  },
+  "homepage": "https://github.com/DiegoPinto357/automato#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DiegoPinto357/automato.git"
+  },
+  "scripts": {
+    "test": "jest --watch"
+  },
+  "devDependencies": {
+    "jest": "^27.0.6",
+    "rewire": "^5.0.0"
+  },
+  "prettier": {
+    "singleQuote": true,
+    "arrowParens": "avoid"
+  }
+}
