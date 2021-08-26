@@ -14,7 +14,8 @@
     "url": "git+https://github.com/DiegoPinto357/automato.git"
   },
   "scripts": {
-    "test": "jest --watch"
+    "test": "jest --watch",
+    "push": "clasp push"
   },
   "devDependencies": {
     "jest": "^27.0.6",
