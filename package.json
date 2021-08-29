@@ -22,5 +22,10 @@
   "prettier": {
     "singleQuote": true,
     "arrowParens": "avoid"
+  },
+  "jest": {
+    "setupFiles": [
+      "<rootDir>/setupTest.js"
+    ]
   }
 }
