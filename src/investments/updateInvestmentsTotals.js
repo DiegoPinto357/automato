@@ -1,3 +1,12 @@
+function onOpen() {
+  const ui = SpreadsheetApp.getUi();
+  ui.createMenu('Financeiro')
+    .addSubMenu(
+      ui.createMenu('Investimentos').addItem('Atualizar valores totais', 'run')
+    )
+    .addToUi();
+}
+
 const run = () => {
   const spreadsheetId = '1MuWkH84pJhQFxe07CHxPBGQTiSz6FDYCuPAB_DMbgNY';
   const sheetName = 'Investimentos';
