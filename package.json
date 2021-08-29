@@ -5,9 +5,6 @@
   "main": "index.js",
   "author": "Diego Pinto",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/DiegoPinto357/automato/issues"
-  },
   "homepage": "https://github.com/DiegoPinto357/automato#readme",
   "repository": {
     "type": "git",
@@ -15,7 +12,8 @@
   },
   "scripts": {
     "test": "jest --watch",
-    "push": "clasp push"
+    "push": "clasp push",
+    "pull": "clasp pull"
   },
   "devDependencies": {
     "jest": "^27.0.6",
