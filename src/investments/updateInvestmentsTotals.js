@@ -1,42 +1,33 @@
 const run = () => {
   const spreadsheetId = '1MuWkH84pJhQFxe07CHxPBGQTiSz6FDYCuPAB_DMbgNY';
   const sheetName = 'Investimentos';
+  const tableId = 'Finalidade';
 
   const headerSize = 1;
   const colHeaderSize = 1;
   const footerSize = 2;
   const colFooterSize = 1;
 
-  const getTableData = () => {
-    const sheet =
-      SpreadsheetApp.openById(spreadsheetId).getSheetByName(sheetName);
-    const table = getTableFromSheet(sheet, 'Finalidade');
+  const table = new Table(spreadsheetId, sheetName, tableId);
 
-    const tableValues = table.data
-      .slice(headerSize, -footerSize)
-      .map(row => row.slice(colHeaderSize, -colFooterSize));
+  const tableValues = table
+    .getData()
+    .slice(headerSize, -footerSize)
+    .map(row => row.slice(colHeaderSize, -colFooterSize));
 
-    const currentTotals = table.data[table.boundaries.numOfRows - 2].slice(
-      colHeaderSize,
-      -colFooterSize
+  const { numOfRows } = table.getBoundaries();
+
+  const currentTotals = table
+    .getData()
+    [numOfRows - 2].slice(colHeaderSize, -colFooterSize);
+
+  const newTotals = table
+    .getData()
+    [numOfRows - 1].slice(colHeaderSize, -colFooterSize)
+    .map((newTotal, index) =>
+      newTotal !== '' ? newTotal : currentTotals[index]
     );
-    const newTotals = table.data[table.boundaries.numOfRows - 1]
-      .slice(colHeaderSize, -colFooterSize)
-      .map((newTotal, index) =>
-        newTotal !== '' ? newTotal : currentTotals[index]
-      );
 
-    return {
-      sheet,
-      tableBoundaries: table.boundaries,
-      tableValues,
-      currentTotals,
-      newTotals,
-    };
-  };
-
-  const { sheet, tableBoundaries, tableValues, currentTotals, newTotals } =
-    getTableData();
   const totalDiffs = newTotals.map(
     (newTotal, index) => newTotal - currentTotals[index]
   );
@@ -53,22 +44,20 @@ const run = () => {
       .map(value => (value == 0 ? '' : value));
   });
 
-  newValues.forEach((column, index) => {
-    const colIndex = index + tableBoundaries.colOffset + colHeaderSize;
-    const firstCell = indexToCell(
-      colIndex,
-      tableBoundaries.rowOffset + headerSize
-    );
-    const lastCell = indexToCell(
-      colIndex,
-      tableBoundaries.rowOffset -
-        headerSize +
-        tableBoundaries.numOfRows -
-        footerSize
-    );
-    const range = `${firstCell}:${lastCell}`;
+  const transpose = matrix =>
+    matrix[0].map((_, i) => matrix.map(row => row[i]));
 
-    const cells = sheet.getRange(range);
-    cells.setValues(column.map(value => [value]));
+  table.setData(transpose(newValues), {
+    rowIndex: headerSize,
+    colIndex: colHeaderSize,
+  });
+
+  table.updateSpreadSheet({
+    ignore: {
+      rowsAtStart: headerSize,
+      rowsAtEnd: footerSize,
+      colsAtStart: colHeaderSize,
+      colsAtEnd: colFooterSize,
+    },
   });
 };

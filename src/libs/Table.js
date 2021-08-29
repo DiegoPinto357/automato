@@ -48,9 +48,9 @@ class Table {
     return this;
   }
 
-  static indexToCell = (rowIndex, colIndex) => {
+  static indexToCell(rowIndex, colIndex) {
     return `${String.fromCharCode(colIndex + 65)}${rowIndex + 1}`;
-  };
+  }
 
   setData(data, { rowIndex, colIndex }) {
     rowIndex = rowIndex ? rowIndex : 0;
