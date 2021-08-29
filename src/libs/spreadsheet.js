@@ -1,5 +1,5 @@
-const indexToRange = (columnIndex, rowIndex) => {
-  return `${String.fromCharCode(columnIndex + 65)}${rowIndex + 1}`;
+const indexToCell = (colIndex, rowIndex) => {
+  return `${String.fromCharCode(colIndex + 65)}${rowIndex + 1}`;
 };
 
 const isEmpty = value => value === '';
@@ -42,5 +42,6 @@ const getTableFromSheet = (sheet, id) => {
     .slice(rowOffset, rowOffset + numOfRows)
     .map(row => row.slice(colOffset, colOffset + numOfCols));
 
-  return { rowOffset, numOfRows, colOffset, numOfCols, table };
+  const boundaries = { rowOffset, numOfRows, colOffset, numOfCols };
+  return { boundaries, data: table };
 };
