@@ -10,8 +10,8 @@ class Table {
 
     let rowOffset = null;
     let numOfRows = 0;
-    let colOffset = null;
-    let numOfCols = 0;
+
+    const emptyCols = new Array(data[0].length).fill(true);
 
     data.some((row, rowIndex) => {
       let emptyRow = true;
@@ -19,25 +19,31 @@ class Table {
       row.forEach((item, colIndex) => {
         if (item === id) {
           rowOffset = rowIndex;
-          colOffset = colIndex;
           emptyRow = false;
+          emptyCols[colIndex] = false;
           return;
         }
 
-        if (rowOffset === null && colOffset === null) {
+        if (rowOffset === null) {
           emptyRow = false;
           return;
         }
 
         if (item !== '') {
           numOfRows = Math.max(rowIndex - rowOffset + 1, numOfRows);
-          numOfCols = Math.max(colIndex - colOffset + 1, numOfCols);
           emptyRow = false;
+          emptyCols[colIndex] = false;
         }
       });
 
       return emptyRow;
     });
+
+    const colOffset = emptyCols[0] ? emptyCols.indexOf(true) + 1 : 0;
+    const emptyColsWithoutOffset = emptyCols.slice(colOffset);
+    const lastEmptyIndex = emptyColsWithoutOffset.indexOf(true);
+    const numOfCols =
+      lastEmptyIndex >= 0 ? lastEmptyIndex : emptyColsWithoutOffset.length;
 
     this._data = data
       .slice(rowOffset, rowOffset + numOfRows)
