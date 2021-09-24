@@ -6,12 +6,18 @@ const getDistributionValues = month => {
 
   const monthValues = table.getData().slice(2, -1);
 
-  return monthValues.reduce((dist, row, index) => {
+  const labelColIndex = 0;
+
+  const distributionValues = new Map();
+
+  monthValues.forEach((row, index) => {
     if (index % 2 !== 0) {
-      dist.push(row.slice(1, -1)[month - 1]);
+      const label = monthValues[index - 1][labelColIndex];
+      distributionValues.set(label, row.slice(1, -1)[month - 1]);
     }
-    return dist;
-  }, []);
+  });
+
+  return distributionValues;
 };
 
 const getCurrentInvestmentValues = () => {
@@ -22,25 +28,29 @@ const getCurrentInvestmentValues = () => {
 
   const ignoreAtTop = 1;
   const ignoreAtBottom = 2;
+  const labelColIndex = 0;
   const investmentColIndex = 1;
 
   const data = table.getData();
 
-  return data.reduce((values, row, index) => {
+  const values = new Map();
+
+  data.forEach((row, index) => {
     if (index <= ignoreAtTop - 1 || index >= data.length - ignoreAtBottom)
       return values;
 
-    values.push(row[investmentColIndex]);
-    return values;
-  }, []);
+    values.set(row[labelColIndex], row[investmentColIndex]);
+  });
+
+  return values;
 };
 
 const distributeToInvestments = (month = 1) => {
   const distributionValues = getDistributionValues(month);
   const currentInvestmentValues = getCurrentInvestmentValues();
 
-  console.log(distributionValues);
-  console.log(currentInvestmentValues);
+  console.log([...distributionValues.entries()]);
+  console.log([...currentInvestmentValues.entries()]);
 };
 
 const showDistributionPrompt = () => {
